@@ -7,30 +7,111 @@
     <title>Daftar</title>
   </head>
   <body>
+    <!-- Header -->
     <header
-      class="flex bg-green-500 w-auto h-40 m-4 rounded-md items-center justify-center text-white"
+      class="flex bg-green-500 w-auto h-20 m-4 rounded-md items-center justify-center text-white"
     >
       <h3 class="text-5xl uppercase">Beasiswa</h3>
     </header>
-    <div class="flex text-white gap-4 m-4 cursor-pointer">
-      <a
-        href="index.html"
-        class="flex bg-slate-500 w-full h-11 rounded-md items-center justify-center"
+
+    <!-- Nav Bar -->
+    <div class="container">
+      <div class="flex text-white gap-4 m-4 cursor-pointer">
+        <a
+          href="index.html"
+          class="flex bg-slate-500 w-full h-11 rounded-md items-center justify-center"
+        >
+          Pilihan Beasiswa
+        </a>
+        <a
+          href="#"
+          class="bg-slate-500 w-full h-11 rounded-md flex items-center justify-center"
+        >
+          Daftar
+        </a>
+        <a
+          href="hasil.html"
+          class="bg-slate-500 w-full h-11 rounded-md flex items-center justify-center"
+        >
+          Hasil
+        </a>
+      </div>
+    </div>
+
+    <!-- Greeting -->
+
+    <div class="container">
+      <h3 class="text-center mb-4 text-3xl font-bold">PENDAFTARAN BEASISWA</h3>
+    </div>
+    <!-- Form Pendaftaran -->
+    <div class="container">
+      <div
+        class="w-full max-w-md mx-auto px-6 py-7 bg-white rounded-xl overflow-hidden border-2 border-slate-300"
       >
-        Pilihan Beasiswa
-      </a>
-      <a
-        href="#"
-        class="bg-slate-500 w-full h-11 rounded-md flex items-center justify-center"
-      >
-        Daftar
-      </a>
-      <a
-        href="hasil.html"
-        class="bg-slate-500 w-full h-11 rounded-md flex items-center justify-center"
-      >
-        Hasil
-      </a>
+        <h2 class="text-2xl uppercase font-medium mb-4 text-center">
+          REGISTRASI BEASISWA
+        </h2>
+        <form method="post" action="">
+          <div class="space-y-2">
+            <div class="input-group">
+              <label for="username" class="text-slate-800 mb-2 block"
+                >Masukkan Nama</label
+              >
+              <input
+                type="text"
+                name="nama"
+                class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-blue-500 placeholder-gray-400"
+                placeholder=""
+                required
+              />
+            </div>
+          </div>
+          <div class="space-y-2">
+            <div class="input-group">
+              <label for="email" class="text-slate-800 my-2 block"
+                >Masukkan Email</label
+              ><input
+                type="email"
+                name="email"
+                class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-blue-500 placeholder-gray-400"
+                placeholder="youremail.@gmail.com"
+                required
+              />
+            </div>
+          </div>
+          <div class="space-y-2">
+            <div class="input-group">
+              <label for="phone" class="text-slate-800 my-2 block"
+                >Nomor HP</label
+              >
+              <div class="relative">
+                <input
+                  type="tel"
+                  name="phone"
+                  class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-blue-500"
+                  placeholder="08"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="mt-4 flex gap-4">
+            <button
+              type="button"
+              id="register"
+              class="block w-full py-2 text-center text-white bg-blue-500 border border-blue-500 rounded hover:bg-transparent hover:text-blue-500 transition uppercase font-roboto font-medium"
+            >
+              Daftar
+            </button>
+            <button
+              type="button"
+              id="cancel"
+              class="block w-full py-2 text-center text-white bg-red-500 border border-red-500 rounded hover:bg-transparent hover:text-red-500 transition uppercase font-roboto font-medium"
+            >
+              Batal
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   </body>
 </html>
