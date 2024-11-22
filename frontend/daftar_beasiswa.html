@@ -4,99 +4,197 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../dist/output.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
     <title>Daftar</title>
   </head>
-  <body>
+  <body class="bg-primary">
     <!-- Header -->
     <header
-      class="flex bg-green-500 w-auto h-20 m-4 rounded-md items-center justify-center text-white"
+      class="flex bg-secondary w-auto h-20 m-4 rounded-md items-center justify-center text-slate-200"
     >
-      <h3 class="text-5xl uppercase">Beasiswa</h3>
+      <h3 class="font-rubik text-5xl uppercase">KAMPUSKU AJA</h3>
     </header>
 
     <!-- Nav Bar -->
-    <div class="container">
+    <div class="container font-rubik">
       <div class="flex text-white gap-4 m-4 cursor-pointer">
         <a
           href="index.html"
-          class="flex bg-slate-500 w-full h-11 rounded-md items-center justify-center"
+          class="flex bg-secondary w-full h-11 rounded-md items-center justify-center"
         >
           Pilihan Beasiswa
         </a>
         <a
           href="#"
-          class="bg-slate-500 w-full h-11 rounded-md flex items-center justify-center"
+          class="bg-secondary w-full h-11 rounded-md flex items-center justify-center"
         >
           Daftar
         </a>
         <a
           href="hasil.html"
-          class="bg-slate-500 w-full h-11 rounded-md flex items-center justify-center"
+          class="bg-secondary w-full h-11 rounded-md flex items-center justify-center"
         >
           Hasil
         </a>
       </div>
     </div>
 
-    <!-- Greeting -->
-
-    <div class="container">
-      <h3 class="text-center mb-4 text-3xl font-bold">PENDAFTARAN BEASISWA</h3>
-    </div>
     <!-- Form Pendaftaran -->
-    <div class="container">
+    <div class="container font-rubik mt-10">
       <div
         class="w-full max-w-md mx-auto px-6 py-7 bg-white rounded-xl overflow-hidden border-2 border-slate-300"
       >
         <h2 class="text-2xl uppercase font-medium mb-4 text-center">
           REGISTRASI BEASISWA
         </h2>
-        <form method="post" action="">
+
+        <!-- Form Start -->
+        <form method="post" action="../backend/registrasi.php">
+          <!-- Input Nama -->
           <div class="space-y-2">
             <div class="input-group">
               <label for="username" class="text-slate-800 mb-2 block"
-                >Masukkan Nama</label
+                >Nama</label
               >
               <input
                 type="text"
                 name="nama"
                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-blue-500 placeholder-gray-400"
-                placeholder=""
+                placeholder="Masukkan nama"
                 required
               />
             </div>
           </div>
+
+          <!-- Inpput Email -->
           <div class="space-y-2">
             <div class="input-group">
-              <label for="email" class="text-slate-800 my-2 block"
-                >Masukkan Email</label
-              ><input
+              <label for="email" class="text-slate-800 my-2 block">Email</label>
+              <input
                 type="email"
                 name="email"
+                id="email"
                 class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-blue-500 placeholder-gray-400"
-                placeholder="youremail.@gmail.com"
+                placeholder="youremail@gmail.com"
                 required
               />
+              <p id="email-error" class="text-red-500 text-sm hidden">
+                Format email tidak valid. Contoh: yourname@gmail.com
+              </p>
             </div>
           </div>
+
+          <!-- Input Nomor HP -->
           <div class="space-y-2">
             <div class="input-group">
-              <label for="phone" class="text-slate-800 my-2 block"
-                >Nomor HP</label
-              >
+              <label for="phone" class="text-slate-800 my-2 block">
+                Nomor HP
+              </label>
               <div class="relative">
                 <input
                   type="tel"
                   name="phone"
+                  id="phone"
                   class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-blue-500"
-                  placeholder="08"
+                  placeholder="Masukkan nomor HP"
+                  maxlength="13"
+                  required
                 />
+              </div>
+              <p id="phone-error" class="text-red-500 text-sm hidden">
+                Nomor HP harus berupa angka
+              </p>
+            </div>
+          </div>
+
+          <!-- Input Semster Saat Ini -->
+          <div class="space-y-2">
+            <div class="input-group">
+              <label for="semester" class="text-slate-800 my-2 block">
+                Semester Saat Ini
+              </label>
+              <div class="relative">
+                <select
+                  name="semester"
+                  id="semester"
+                  class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-blue-500"
+                >
+                  <option value="">Pilih Semester</option>
+                  <option value="1">Semester 1</option>
+                  <option value="2">Semester 2</option>
+                  <option value="3">Semester 3</option>
+                  <option value="4">Semester 4</option>
+                  <option value="5">Semester 5</option>
+                  <option value="6">Semester 6</option>
+                  <option value="7">Semester 7</option>
+                  <option value="8">Semester 8</option>
+                </select>
               </div>
             </div>
           </div>
+
+          <!-- IPK -->
+          <div class="space-y-2">
+            <!-- Input IPK -->
+            <div class="input-group">
+              <label for="ipk" class="text-slate-800 my-2 block"
+                >IPK Terakhir</label
+              >
+              <input
+                type="text"
+                name="ipk"
+                id="ipk"
+                readonly
+                class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-blue-500 placeholder-gray-400"
+              />
+            </div>
+          </div>
+
+          <!-- Input Pilihan Mahasiswa -->
+          <div class="space-y-2">
+            <div class="input-group">
+              <label for="pilihan_beasiswa" class="text-slate-800 my-2 block">
+                Pilihan Beasiswa
+              </label>
+              <div class="relative">
+                <select
+                  name="pilihan_beasiswa"
+                  id="pilihan_beasiswa"
+                  class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-blue-500"
+                >
+                  <option value="">Pilih Beasiswa</option>
+                  <option value="1">Beasiswa Akademik</option>
+                  <option value="2">Beasiswa Non Akademik</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Input Upload Berkas -->
+          <div class="space-y-2">
+            <div class="input-group">
+              <label for="upload" class="text-slate-800 my-2 block">
+                Upload Berkas Bersyarat
+              </label>
+              <input
+                type="file"
+                name="upload"
+                id="upload"
+                class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-blue-500 placeholder-gray-400"
+                accept=".pdf, .jpg, .jpeg, .zip"
+              />
+            </div>
+          </div>
+
+          <!-- Button Daftar dan Batal -->
           <div class="mt-4 flex gap-4">
             <button
-              type="button"
+              type="submit"
               id="register"
               class="block w-full py-2 text-center text-white bg-blue-500 border border-blue-500 rounded hover:bg-transparent hover:text-blue-500 transition uppercase font-roboto font-medium"
             >
@@ -106,12 +204,15 @@
               type="button"
               id="cancel"
               class="block w-full py-2 text-center text-white bg-red-500 border border-red-500 rounded hover:bg-transparent hover:text-red-500 transition uppercase font-roboto font-medium"
+              onclick="window.location.href = 'index.html';"
             >
               Batal
             </button>
           </div>
         </form>
+        <!-- From End -->
       </div>
     </div>
+    <script src="../javascript/script.js"></script>
   </body>
 </html>
