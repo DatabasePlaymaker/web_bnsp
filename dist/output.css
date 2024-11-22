@@ -566,20 +566,16 @@ video {
   height: 2.75rem;
 }
 
-.h-auto {
-  height: auto;
-}
-
 .h-40 {
   height: 10rem;
 }
 
-.w-full {
-  width: 100%;
-}
-
 .w-auto {
   width: auto;
+}
+
+.w-full {
+  width: 100%;
 }
 
 .cursor-pointer {
@@ -613,11 +609,6 @@ video {
 
 .text-5xl {
   font-size: 3rem;
-  line-height: 1;
-}
-
-.text-9xl {
-  font-size: 8rem;
   line-height: 1;
 }
 
