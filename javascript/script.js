@@ -36,7 +36,7 @@ phoneInput.addEventListener("input", () => {
 document.addEventListener("DOMContentLoaded", function () {
   // Fungsi untuk menghasilkan nilai IPK random antara 2.5 dan 4
   function generateRandomIPK() {
-    return (Math.random() * (4 - 2.5) + 2.5).toFixed(2).replace(".", ",");
+    return (Math.random() * (4 - 2.5) + 2.5).toFixed(2);
   }
 
   // Inisialisasi variabel dan elemen
@@ -45,8 +45,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const uploadBerkas = document.getElementById("upload");
 
   // Atur nilai IPK secara otomatis
-  const ipk = parseFloat(generateRandomIPK().replace(",", ".")); // Parsing kembali untuk perbandingan
-  ipkElement.value = ipk.toString().replace(".", ",");
+  const ipk = parseFloat(generateRandomIPK()); // Parsing kembali untuk perbandingan
+  ipkElement.value = ipk.toString();
 
   // Logika aktif/nonaktif elemen berdasarkan IPK
   if (ipk < 3) {
