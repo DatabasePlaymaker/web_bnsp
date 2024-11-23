@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../dist/output.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Hasil Pendaftaran</title>
   </head>
   <body class="bg-primary">
@@ -45,49 +46,93 @@
           class="table-auto mx-auto w-auto bg-white rounded-lg border-collapse"
         >
           <thead>
-            <tr class="bg-secondary text-white">
-              <th class="border px-4 py-2">ID</th>
-              <th class="border px-4 py-2">Nama</th>
-              <th class="border px-4 py-2">Email</th>
-              <th class="border px-4 py-2">No. HP</th>
-              <th class="border px-4 py-2">Semester</th>
-              <th class="border px-4 py-2">IPK</th>
-              <th class="border px-4 py-2">Beasiswa</th>
-              <th class="border px-4 py-2">Berkas</th>
-              <th class="border px-4 py-2">Status Ajuan</th>
-              <!-- Kolom baru -->
-            </tr>
+            <thead>
+              <tr class="bg-secondary text-white">
+                <th class="border px-4 py-2">ID</th>
+                <th class="border px-4 py-2">Nama</th>
+                <th class="border px-4 py-2">Email</th>
+                <th class="border px-4 py-2">No. HP</th>
+                <th class="border px-4 py-2">Semester</th>
+                <th class="border px-4 py-2">IPK</th>
+                <th class="border px-4 py-2">Beasiswa</th>
+                <th class="border px-4 py-2">Berkas</th>
+                <th class="border px-4 py-2">Status Ajuan</th>
+                <th class="border px-4 py-2">Aksi</th>
+                <!-- Kolom Aksi baru -->
+              </tr>
+            </thead>
           </thead>
           <tbody id="data-table" class="text-center"></tbody>
         </table>
       </div>
     </div>
 
+    <!-- Javascript -->
+    <!-- Ambil Data Dari Backend -->
     <script>
       // Ambil data dari backend
       fetch("../backend/ambil_data.php")
         .then((response) => response.json())
         .then((data) => {
           const tableBody = document.getElementById("data-table");
+          let nomorUrut = 1; // Variabel untuk nomor urut
+
           data.forEach((item) => {
             const row = document.createElement("tr");
             row.innerHTML = `
-        <td class="border px-4 py-2">${item.id}</td>
-        <td class="border px-4 py-2">${item.nama}</td>
-        <td class="border px-4 py-2">${item.email}</td>
-        <td class="border px-4 py-2">${item.phone}</td>
-        <td class="border px-4 py-2">${item.semester}</td>
-        <td class="border px-4 py-2">${item.ipk}</td>
-        <td class="border px-4 py-2">${item.pilihan_beasiswa}</td>
-        <td class="border px-4 py-2">
-          <a href="../${item.upload}" target="_blank" class="text-blue-500 hover:underline">Lihat</a>
-        </td>
-        <td class="border px-4 py-2">${item.status_ajuan}</td> <!-- Kolom baru -->
-      `;
+          <td class="border px-4 py-2">${nomorUrut}</td>  <!-- Nomor urut manual -->
+          <td class="border px-4 py-2">${item.nama}</td>
+          <td class="border px-4 py-2">${item.email}</td>
+          <td class="border px-4 py-2">${item.phone}</td>
+          <td class="border px-4 py-2">${item.semester}</td>
+          <td class="border px-4 py-2">${item.ipk}</td>
+          <td class="border px-4 py-2">${item.pilihan_beasiswa}</td>
+          <td class="border px-4 py-2">
+            <a href="../${item.upload}" target="_blank" class="text-blue-500 hover:underline">Lihat</a>
+          </td>
+          <td class="border px-4 py-2">${item.status_ajuan}</td>
+          <td class="border px-4 py-2">
+            <button onclick="hapusData(${item.id})" class="bg-red-500 text-white px-3 py-1 rounded">Hapus</button>
+          </td>
+        `;
             tableBody.appendChild(row);
+            nomorUrut++; // Increment nomor urut setiap baris
           });
         })
         .catch((error) => console.error("Error:", error));
+
+      // Fungsi untuk menghapus data dengan SweetAlert
+      function hapusData(id) {
+        Swal.fire({
+          title: "Apakah Anda yakin?",
+          text: "Data ini akan dihapus!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Ya, hapus!",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // Lakukan penghapusan data
+            fetch(`../backend/hapus_data.php?id=${id}`, {method: "DELETE"})
+              .then((response) => response.json())
+              .then((data) => {
+                if (data.success) {
+                  Swal.fire(
+                    "Dihapus!",
+                    "Data berhasil dihapus.",
+                    "success"
+                  ).then(() => {
+                    location.reload(); // Reload halaman setelah data dihapus
+                  });
+                } else {
+                  Swal.fire("Gagal!", "Data gagal dihapus.", "error");
+                }
+              })
+              .catch((error) => console.error("Error:", error));
+          }
+        });
+      }
     </script>
   </body>
 </html>
