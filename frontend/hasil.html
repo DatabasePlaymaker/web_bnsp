@@ -4,47 +4,87 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../dist/output.css" />
-    <title>Hasil</title>
+    <title>Hasil Pendaftaran</title>
   </head>
-  <body>
+  <body class="bg-primary">
     <!-- Header -->
     <header
-      class="flex bg-blue-500 w-auto h-20 m-4 rounded-md items-center justify-center text-white"
+      class="flex bg-secondary w-auto h-20 m-4 rounded-md items-center justify-center text-slate-200"
     >
-      <h3 class="text-5xl uppercase">Beasiswa</h3>
+      <h3 class="font-rubik text-5xl uppercase">KAMPUSKU AJA</h3>
     </header>
 
     <!-- Nav Bar -->
-    <div class="flex text-white gap-4 m-4 cursor-pointer">
-      <a
-        href="index.html"
-        class="flex bg-slate-500 w-full h-11 rounded-md items-center justify-center"
-      >
-        Pilihan Beasiswa
-      </a>
-      <a
-        href="daftar_beasiswa.html"
-        class="bg-slate-500 w-full h-11 rounded-md flex items-center justify-center"
-      >
-        Daftar
-      </a>
-      <a
-        href="#"
-        class="bg-slate-500 w-full h-11 rounded-md flex items-center justify-center"
-      >
-        Hasil
-      </a>
+    <div class="container font-rubik">
+      <div class="flex text-white gap-4 m-4 cursor-pointer">
+        <a
+          href="index.html"
+          class="flex bg-secondary w-full h-11 rounded-md items-center justify-center"
+        >
+          Pilihan Beasiswa
+        </a>
+        <a
+          href="daftar_beasiswa.html"
+          class="bg-secondary w-full h-11 rounded-md flex items-center justify-center"
+        >
+          Daftar
+        </a>
+        <a
+          href="#"
+          class="bg-secondary w-full h-11 rounded-md flex items-center justify-center"
+        >
+          Hasil
+        </a>
+      </div>
     </div>
 
-    <div class="max-w-2xl mx-auto bg-white shadow-md rounded-lg p-6">
-      <h2 class="text-2xl font-bold mb-4 text-center">
-        Hasil Pendaftaran Beasiswa
-      </h2>
-      <table class="w-full border-collapse border border-gray-300">
-        <tbody id="resultTable">
-          <!-- Data akan diisi oleh PHP -->
-        </tbody>
-      </table>
+    <!-- Tabel Data -->
+    <div class="container font-rubik mt-10">
+      <div class="overflow-x-auto">
+        <table
+          class="table-auto mx-auto w-auto bg-white rounded-lg border-collapse"
+        >
+          <thead>
+            <tr class="bg-secondary text-white">
+              <th class="border px-4 py-2">ID</th>
+              <th class="border px-4 py-2">Nama</th>
+              <th class="border px-4 py-2">Email</th>
+              <th class="border px-4 py-2">No. HP</th>
+              <th class="border px-4 py-2">Semester</th>
+              <th class="border px-4 py-2">IPK</th>
+              <th class="border px-4 py-2">Beasiswa</th>
+              <th class="border px-4 py-2">Berkas</th>
+            </tr>
+          </thead>
+          <tbody id="data-table" class="text-center"></tbody>
+        </table>
+      </div>
     </div>
+
+    <script>
+      // Ambil data dari backend
+      fetch("../backend/ambil_data.php")
+        .then((response) => response.json())
+        .then((data) => {
+          const tableBody = document.getElementById("data-table");
+          data.forEach((item) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+              <td class="border px-4 py-2">${item.id}</td>
+              <td class="border px-4 py-2">${item.nama}</td>
+              <td class="border px-4 py-2">${item.email}</td>
+              <td class="border px-4 py-2">${item.phone}</td>
+              <td class="border px-4 py-2">${item.semester}</td>
+              <td class="border px-4 py-2">${item.ipk}</td>
+              <td class="border px-4 py-2">${item.pilihan_beasiswa}</td>
+              <td class="border px-4 py-2">
+                <a href="../${item.upload}" target="_blank" class="text-blue-500 hover:underline">Lihat</a>
+              </td>
+            `;
+            tableBody.appendChild(row);
+          });
+        })
+        .catch((error) => console.error("Error:", error));
+    </script>
   </body>
 </html>
