@@ -10,6 +10,18 @@ module.exports = {
       fontFamily: {
         rubik: ["Rubik", "Verdana", "sans-serif"], // Untuk Rubik
       },
+      keyframes: {
+        spinIn: {
+          to: {transform: "rotate(18deg)"},
+        },
+        spinOut: {
+          to: {transform: "rotate(360deg)"},
+        },
+      },
+      animation: {
+        spinIn: "spinIn 30s linear infinite",
+        spinout: "spinIn 10s linear infinite",
+      },
     },
   },
   plugins: [],
