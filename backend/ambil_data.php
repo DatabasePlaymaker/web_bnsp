@@ -17,7 +17,7 @@ if ($conn->connect_error) {
 }
 
 // Query untuk mengambil data
-$sql = "SELECT id, nama, email, phone, semester, ipk, pilihan_beasiswa, upload FROM registrasi";
+$sql = "SELECT id, nama, email, phone, semester, ipk, pilihan_beasiswa, upload, status_ajuan FROM registrasi";
 $result = $conn->query($sql);
 
 // Format data menjadi JSON

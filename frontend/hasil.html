@@ -54,6 +54,8 @@
               <th class="border px-4 py-2">IPK</th>
               <th class="border px-4 py-2">Beasiswa</th>
               <th class="border px-4 py-2">Berkas</th>
+              <th class="border px-4 py-2">Status Ajuan</th>
+              <!-- Kolom baru -->
             </tr>
           </thead>
           <tbody id="data-table" class="text-center"></tbody>
@@ -70,17 +72,18 @@
           data.forEach((item) => {
             const row = document.createElement("tr");
             row.innerHTML = `
-              <td class="border px-4 py-2">${item.id}</td>
-              <td class="border px-4 py-2">${item.nama}</td>
-              <td class="border px-4 py-2">${item.email}</td>
-              <td class="border px-4 py-2">${item.phone}</td>
-              <td class="border px-4 py-2">${item.semester}</td>
-              <td class="border px-4 py-2">${item.ipk}</td>
-              <td class="border px-4 py-2">${item.pilihan_beasiswa}</td>
-              <td class="border px-4 py-2">
-                <a href="../${item.upload}" target="_blank" class="text-blue-500 hover:underline">Lihat</a>
-              </td>
-            `;
+        <td class="border px-4 py-2">${item.id}</td>
+        <td class="border px-4 py-2">${item.nama}</td>
+        <td class="border px-4 py-2">${item.email}</td>
+        <td class="border px-4 py-2">${item.phone}</td>
+        <td class="border px-4 py-2">${item.semester}</td>
+        <td class="border px-4 py-2">${item.ipk}</td>
+        <td class="border px-4 py-2">${item.pilihan_beasiswa}</td>
+        <td class="border px-4 py-2">
+          <a href="../${item.upload}" target="_blank" class="text-blue-500 hover:underline">Lihat</a>
+        </td>
+        <td class="border px-4 py-2">${item.status_ajuan}</td> <!-- Kolom baru -->
+      `;
             tableBody.appendChild(row);
           });
         })
